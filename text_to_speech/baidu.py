@@ -46,7 +46,7 @@ class BaiduSpeech(Speech):
 
         print(response)
 
-        return response.content
+        return response.content, 'mp3'
 
     def voices(self, lang):
 

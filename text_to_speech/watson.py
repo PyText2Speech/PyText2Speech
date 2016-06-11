@@ -49,7 +49,7 @@ class Watson(Speech):
                             stream=False, verify=False
                             )
 
-        return resp.content
+        return resp.content, 'wav'
 
     def voices(self, lang):
         lang = lang.lower()
@@ -72,7 +72,7 @@ class Watson(Speech):
         return []
 
     def languages(self):
-        return ['ja', 'en', 'fr', 'de', 'it']
+        return Watson.LANGUAGES
 
 
 def main():
