@@ -9,6 +9,8 @@ from text_to_speech.configs import server
 
 class BaiduSpeech(Speech):
 
+    NAME = 'BAIDU'
+
     def __init__(self, name=server['BAIDU']['name'], password=server['BAIDU']['pwd']):
         super(BaiduSpeech, self).__init__(name, password)
 

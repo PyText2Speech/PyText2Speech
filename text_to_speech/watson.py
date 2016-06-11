@@ -3,6 +3,9 @@ from text_to_speech.base import Speech
 
 
 class Watson(Speech):
+
+    NAME = 'WATSON'
+
     LANGUAGES = ('ja', 'en', 'fr', 'de', 'it')
 
     JAPANESE_VOICES = (
