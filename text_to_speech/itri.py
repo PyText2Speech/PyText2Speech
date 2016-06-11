@@ -42,8 +42,8 @@ class Itri(Speech):
         u'TW_LIT_AKoan', u'TW_SPK_AKoan'
     )
 
-    def __init__(self, name, password):
-        super().__init__(name, password)
+    def __init__(self, name, password, **kwargs):
+        super().__init__(name, password, **kwargs)
         self.url = "http://tts.itri.org.tw/TTSService/Soap_1_3.php?wsdl"
         self.name = name
         self.password = password

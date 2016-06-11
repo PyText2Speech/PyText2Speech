@@ -17,8 +17,8 @@ class BaiduSpeech(Speech):
 
     NAME = 'BAIDU'
 
-    def __init__(self, name=server['BAIDU']['name'], password=server['BAIDU']['pwd']):
-        super(BaiduSpeech, self).__init__(name, password)
+    def __init__(self, name, password, **kwargs):
+        super(BaiduSpeech, self).__init__(name, password, **kwargs)
 
         uri = "https://openapi.baidu.com/oauth/2.0/token"
 

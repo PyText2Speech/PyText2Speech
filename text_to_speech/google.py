@@ -79,8 +79,8 @@ class Google(Speech):
     )
 
 
-    def __init__(self, name, password):
-        super().__init__(name, password)
+    def __init__(self, name, password, **kwargs):
+        super().__init__(name, password, **kwargs)
         self.name = name
         self.password = password
 
