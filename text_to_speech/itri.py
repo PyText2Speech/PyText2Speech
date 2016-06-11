@@ -5,6 +5,7 @@ from text_to_speech.base import Speech
 
 class Itri(Speech):
 
+    NAME = 'ITRI'
     # Bruce
     # 中英切換男生語音(default)
     # Theresa
