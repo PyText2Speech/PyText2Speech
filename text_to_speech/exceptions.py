@@ -8,3 +8,11 @@ class AuthenticationError(TextToSpeechException):
 
 class LanguageNotSupportError(TextToSpeechException):
     """if the language is not support, raise the exception"""
+
+
+class VoiceNotSupportError(TextToSpeechException):
+    """if the voice is not support, raise the exception"""
+
+
+class SoxNotInstallError(TextToSpeechException):
+    """if sox didn't install, raise the exception"""

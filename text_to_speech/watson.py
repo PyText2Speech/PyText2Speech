@@ -3,6 +3,9 @@ from text_to_speech.base import Speech
 
 
 class Watson(Speech):
+
+    NAME = 'WATSON'
+
     LANGUAGES = ('ja', 'en', 'fr', 'de', 'it')
 
     JAPANESE_VOICES = (
@@ -76,12 +79,14 @@ class Watson(Speech):
 
 
 def main():
+
     username = "adb36e85-0df9-446c-b168-741eb5439c50"
     password = "jxgksFkuZ74o"
-    watson = Watson(username, password)
-    content = watson.speech("I like the project", 'en')
 
-    with open("/tmp/watson.wav", 'wb') as fp:
+    watson = Watson(username, password)
+    content, extension = watson.speech("I like the project", lang='en', voice='en-US_LisaVoice')
+
+    with open("/tmp/watson." + extension, 'wb') as fp:
         fp.write(content)
 
 

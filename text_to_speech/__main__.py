@@ -19,11 +19,10 @@ DESCRIPTION
 	-h, --help
 		show usage
 
-	-v, --version
+	-v, --verbose
 
 EXAMPLES
-    text_to_speech -n USERNAME -p PASSWORD TEXT TO SPPECH
-
+    text2speech -o output.mp3 -s google  Have a goode day
 
 COPYRIGHT
 	MIT Licence
@@ -35,40 +34,72 @@ SOURCE
 import sys
 import getopt
 from gtts import gTTS
-try:
-    opts, args = getopt.getopt(sys.argv[1:], "o:s:n:p:hv", ["output", "service", "name", "password", "help", "version"])
-except getopt.GetoptError as e:
-    print(__doc__)
-    sys.exit("invalid option")
+from text_to_speech.configs import server
+from text_to_speech.get_speech import get_speech
+from langdetect import detect
 
-name = None
-password = None
-service_type = 'google'
-output_file = 'out.mp3'
 
-for o, a in opts:
-    if o in ('-h', '--help'):
+def main(argv=None):
+    if not argv:
+        argv = sys.argv[1:]
+
+    try:
+        opts, args = getopt.getopt(argv, "l:o:s:n:p:hv", ["lang", "output", "service", "name", "password", "help", "verbose"])
+    except getopt.GetoptError as e:
         print(__doc__)
-        sys.exit(0)
-    elif o in ('-v', '--version'):
-        print(0.1)
-        sys.exit(0)
-    elif o in ('-n', '--name'):
-        name = a
-    elif o in ('-p', '--password'):
-        password = a
-    elif o in ('-s', '--service'):
-        service_type = a
-    elif o in ('-o', '--output'):
-        output_file = a
+        sys.exit("invalid option: " + str(e))
 
-text_need_to_speech = ' '.join(args)
+    name = None
+    password = None
+    service_type = None
+    output_file = 'out.mp3'
+    verbose = False
+    lang = None
 
-if service_type == 'google':
-    tts = gTTS(text='Hello 123', lang='en')
-    tts.save(output_file)
+    for o, a in opts:
+        if o in ('-h', '--help'):
+            print(__doc__)
+            sys.exit(0)
+        elif o in ('-v', '--verbose'):
+            verbose = True
+        elif o in ('-n', '--name'):
+            lang = a
+        elif o in ('-l', '--lang'):
+            name = a
+        elif o in ('-p', '--password'):
+            password = a
+        elif o in ('-s', '--service'):
+            service_type = a
+        elif o in ('-o', '--output'):
+            output_file = a
 
-else:
-    sys.exit("invalid service type")
+
+    # TODO: detect languge in follow
+    text_need_to_speech = ' '.join(args)
+
+    if not lang:
+        lang = detect(text_need_to_speech)
+
+    if not service_type:
+        service_type = get_speech(lang).Name
+
+    if not name and not password:
+        try:
+            s = server[service_type.upper()]
+            name = s['name']
+            password = s['pwd']
+        except KeyError:
+            sys.exit("invalid service type")
 
 
+    if verbose:
+        print('[{}] {} > {}'.format(service_type, text_need_to_speech, output_file))
+    if service_type.upper() == 'GOOGLE':
+        tts = gTTS(text=text_need_to_speech, lang=lang)
+        tts.save(output_file)
+    else:
+        sys.exit("invalid service type")
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

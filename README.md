@@ -4,6 +4,31 @@ PyText2Speech is a python3 package providing a function to easy to speach test w
 This package now integrate with google, IBM watson, Industrial Technology 
 Research Institute of Taiwan ([ITRI](https://www.itri.org.tw/)), Baidu.
 
+Project setup
+---
+
+
+### Basic Python Setup
+
+this is a python3 project. while you are start project, please use virtual environment.
+
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+   
+
+### Mac Preparation
+
+brew install sox
+
+### Windows Preparation
+
+install sox, and modify PATH variable so our program can execute sox
+
+
+### Linux Preparation
+
+install sox with your package management system
 
 
 License

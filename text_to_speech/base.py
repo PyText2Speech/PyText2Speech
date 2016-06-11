@@ -1,10 +1,35 @@
-class Speech(object):
-    def __init__(self, name, password, file_path=None):
-        pass
+from text_to_speech.exceptions import LanguageNotSupportError, VoiceNotSupportError
 
-    # TODO: what parameter is suitable?
-    def make_file(self, *kwarg, **kwargs):
-        binary = self.speech(*kwarg, **kwargs)
+
+class Speech(object):
+    def __init__(self, name, password, file_name=None):
+        self.__file_name = file_name if file_name else 'out'
+
+    def make_file(self, **kwargs):
+
+        lang = kwargs.get('lang', '')
+        voice = kwargs.get('voice', '')
+
+        self._validate_language(lang)
+        self._validate_voices(voice, lang)
+
+        binary, ext = self.speech(**kwargs)
+
+        with open("/tmp/" + self.__file_name + ext, 'wb') as fp:
+            fp.write(binary)
+
+    def _validate_language(self, lang):
+
+        if lang not in self.languages():
+            raise LanguageNotSupportError("{} is not support".format(lang))
+
+    def _validate_voices(self, voice, lang):
+
+        if not voice:
+            return
+
+        if voice not in self.voices(lang):
+            raise ("Voice {} is not support".format(voice))
 
     def speech(self, narration, lang, voice=None, **kwargs):
         """
@@ -16,11 +41,9 @@ class Speech(object):
         """
         pass
 
-    def meta(self):
-        pass
-
     def voices(self, lang):
         return []
 
     def languages(self):
         return []
+
