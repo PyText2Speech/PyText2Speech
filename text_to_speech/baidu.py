@@ -6,6 +6,7 @@ from text_to_speech.base import Speech
 
 from text_to_speech.configs import server
 
+
 class BaiduSpeech(Speech):
 
     def __init__(self, name=server['BAIDU']['name'], password=server['BAIDU']['pwd']):
@@ -63,9 +64,8 @@ class BaiduSpeech(Speech):
 
 if __name__ == "__main__":
 
-    #baidu = BaiduSpeech("hkOIhq0imbfhzxGsxq2HwYN7", "27c99621b1c7b2777ce054442c15382b")
     baidu = BaiduSpeech()
-    content = baidu.speech(u"很高興參加這個project", u'zh-cn')
+    content, extension = baidu.speech(u"很高興參加這個project", u'zh-cn')
 
     with open("/tmp/test." + extension, 'wb') as fp:
         fp.write(content)
