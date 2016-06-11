@@ -5,6 +5,7 @@ from text_to_speech.base import Speech
 
 class Itri(Speech):
 
+    NAME = 'ITRI'
     # Bruce
     # 中英切換男生語音(default)
     # Theresa
@@ -115,8 +116,8 @@ def main():
     username = "test-for-r"
     password = "test1for1r"
     itri = Itri(username, password)
-    download_url = itri.speech(u"很高興參加這個project", u'zh-cn', voice = 'TW_LIT_AKoan')
-    wget.download(download_url[0], out="/tmp/itri.wav")
+    download_url, extension = itri.speech(u"很高興參加這個project", u'zh-cn', voice = 'TW_LIT_AKoan')
+    wget.download(download_url, out="/tmp/itri." + extension)
 
 
 if __name__ == '__main__':
