@@ -1,10 +1,11 @@
 # -*- encoding=utf8 -*-
 import requests
 
-from .base import Speech
+from base import Speech
 
 
 class BaiduSpeech(Speech):
+
     def __init__(self, name, password):
         super(BaiduSpeech, self).__init__(name, password)
 
@@ -17,7 +18,7 @@ class BaiduSpeech(Speech):
 
         self.token = resp['access_token']
 
-    def speech(self, narration, lang, **kwargs):
+    def speech(self, narration, lang, voice=None, **kwargs):
 
         spd = kwargs.get('spd', 5)
         pit = kwargs.get('pit', 5)
@@ -40,6 +41,12 @@ class BaiduSpeech(Speech):
 
         return response.content
 
+    def voices(self, lang):
+
+        if 'zh' in lang :
+            return ['Ann Li']
+
+        return []
 
 if __name__ == "__main__":
 
