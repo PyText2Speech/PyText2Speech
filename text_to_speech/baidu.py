@@ -13,7 +13,6 @@ except Exception as e:
     from base import Speech
 '''
 
-
 class BaiduSpeech(Speech):
 
     def __init__(self, name=server['BAIDU']['name'], password=server['BAIDU']['pwd']):
