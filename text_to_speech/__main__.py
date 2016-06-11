@@ -81,9 +81,12 @@ def main(argv=None):
         service_type = get_speech(lang).Name
 
     if not name and not password:
-        s = server.get(service_type.upper(), None)
-        name = s.username
-        password = s.pwd
+        try:
+            s = server[service_type.upper()]
+            name = s['name']
+            password = s['pwd']
+        except KeyError:
+            sys.exit("invalid service type")
 
     text_need_to_speech = ' '.join(args)
 
