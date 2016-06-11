@@ -37,6 +37,7 @@ from gtts import gTTS
 from text_to_speech.configs import server
 from text_to_speech.get_speech import get_speech
 from langdetect import detect
+from text_to_speech.cmd_player import play
 
 
 def main(argv=None):
@@ -100,6 +101,8 @@ def main(argv=None):
     else:
         sys.exit("invalid service type")
 
+    play(output_file)
 
 if __name__ == "__main__":
+    from text_to_speech.cmd_player import play
     main(sys.argv[1:])
