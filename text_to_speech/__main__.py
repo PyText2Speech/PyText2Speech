@@ -98,18 +98,15 @@ def main(argv=None):
 
     if verbose:
         print('[{}] {} > {}'.format(service_type, text_need_to_speech, output_file))
-    if service_type == 'GOOGLE':
-        # tts = gTTS(text=text_need_to_speech, lang=lang)
-        # tts.save(output_file)
-        speaker = Google(name, password, file_name=output_file)
-    elif service_type == 'WATSON':
+
+    if service_type == 'WATSON':
         speaker = Watson(name, password, file_name=output_file)
     elif server == "ITIR":
         speaker = Itri(name, password, file_name=output_file)
     elif server == 'BAIDU':
         speaker = BaiduSpeech(name, password, file_name=output_file)
     else:
-        sys.exit("invalid service type")
+        speaker = Google(name, password, file_name=output_file)
 
     play(speaker.make_file(narration=text_need_to_speech, lang=lang))
 
