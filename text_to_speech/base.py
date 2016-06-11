@@ -15,7 +15,7 @@ class Speech(object):
 
         binary, ext = self.speech(**kwargs)
 
-        with open("/tmp/" + self.__file_name + ext, 'wb') as fp:
+        with open("/tmp/" + self.__file_name + '.' + ext, 'wb') as fp:
             fp.write(binary)
 
     def _validate_language(self, lang):
