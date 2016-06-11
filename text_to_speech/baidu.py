@@ -3,6 +3,11 @@ import requests
 
 from text_to_speech.base import Speech
 
+#from .base import Speech
+try:
+    from .base import Speech
+except Exception as e:
+    from base import Speech
 
 class BaiduSpeech(Speech):
 
@@ -19,7 +24,6 @@ class BaiduSpeech(Speech):
         self.token = resp['access_token']
 
     def speech(self, narration, lang, voice=None, **kwargs):
-
         spd = kwargs.get('spd', 5)
         pit = kwargs.get('pit', 5)
         vol = kwargs.get('vol', 5)
@@ -38,15 +42,13 @@ class BaiduSpeech(Speech):
         })
 
         print(response)
-
-        return response.content
+        return response
 
     def voices(self, lang):
-
         if 'zh' in lang:
             return ['Ann Li']
-
         return []
+
 
 if __name__ == "__main__":
 
@@ -54,4 +56,4 @@ if __name__ == "__main__":
     content = baidu.speech(u"很高興參加這個project", u'zh')
 
     with open("/tmp/test.mp3", 'wb') as fp:
-        fp.write(content)
+        fp.write(content.content)
