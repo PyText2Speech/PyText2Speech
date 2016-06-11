@@ -2,11 +2,9 @@ from text_to_speech.exceptions import LanguageNotSupportError, VoiceNotSupportEr
 
 
 class Speech(object):
-    def __init__(self, name, password, file_path=None):
-        self.__file = file_path if file_path else '/tmp/out.mp3'
-        pass
+    def __init__(self, name, password, file_name=None):
+        self.__file_name = file_name if file_name else 'out'
 
-    # TODO: what parameter is suitable?
     def make_file(self, **kwargs):
 
         lang = kwargs.get('lang', '')
@@ -17,7 +15,8 @@ class Speech(object):
 
         binary, ext = self.speech(**kwargs)
 
-        #TODO: save file
+        with open("/tmp/" + self.__file_name + ext, 'wb') as fp:
+            fp.write(binary)
 
     def _validate_language(self, lang):
 
@@ -48,6 +47,3 @@ class Speech(object):
     def languages(self):
         return []
 
-    def save(self, content):
-        with open(self.__file, 'wb') as fp:
-            fp.write(content)
