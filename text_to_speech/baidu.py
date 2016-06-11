@@ -22,16 +22,11 @@ class BaiduSpeech(Speech):
 
         self.token = resp['access_token']
 
-    def speech(self, narration, lang, voice=None, **kwargs):
+    def speech(self, narration, lang, voice='', **kwargs):
 
         spd = kwargs.get('spd', 5)
         pit = kwargs.get('pit', 5)
         vol = kwargs.get('vol', 5)
-
-        if 'zh' in lang:
-            lang = 'zh'
-        else:
-            raise LanguageNotSupportError("Baidu didn't support {}".format(lang))
 
         response = requests.get("http://tsn.baidu.com/text2audio", {
             "tex": narration.encode('utf-8'),
@@ -51,9 +46,9 @@ class BaiduSpeech(Speech):
     def voices(self, lang):
 
         if 'zh' in lang:
-            return ['Ann Li']
+            return ['Ann Li', '']
 
-        return []
+        return ['']
 
     def languages(self):
         return ["zh"]
