@@ -1,7 +1,7 @@
 # -*- encoding=utf8 -*-
 import requests
 
-from base import Speech
+from text_to_speech.base import Speech
 
 
 class BaiduSpeech(Speech):
