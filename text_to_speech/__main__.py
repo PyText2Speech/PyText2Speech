@@ -35,6 +35,7 @@ import sys
 import getopt
 from gtts import gTTS
 from text_to_speech.configs import server
+from text_to_speech.get_speech import get_speech
 
 
 def main(argv=None):
@@ -49,7 +50,7 @@ def main(argv=None):
 
     name = None
     password = None
-    service_type = 'GOOGLE'
+    service_type = None
     output_file = 'out.mp3'
     verbose = False
     lang = None
@@ -71,16 +72,20 @@ def main(argv=None):
         elif o in ('-o', '--output'):
             output_file = a
 
+
+    # TODO: detect languge in follow
+    if not lang:
+        lang = 'en'
+
+    if not service_type:
+        service_type = get_speech(lang).Name
+
     if not name and not password:
         s = server.get(service_type.upper(), None)
         name = s.username
         password = s.pwd
 
     text_need_to_speech = ' '.join(args)
-
-    # TODO: detect languge in follow
-    if not lang:
-        lang = 'en'
 
     if verbose:
         print('[{}] {} > {}'.format(service_type, text_need_to_speech, output_file))
