@@ -13,6 +13,9 @@ DESCRIPTION
     -p, --password
         password
 
+    -s, --service
+        google, watson, itri, baidu
+
 	-h, --help
 		show usage
 
@@ -29,17 +32,19 @@ SOURCE
     https://github.com/PyText2Speech/PyText2Speech
 """
 
-import os
 import sys
 import getopt
+from gtts import gTTS
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "n:p:hv", ["name", "password", "help", "version"])
+    opts, args = getopt.getopt(sys.argv[1:], "o:s:n:p:hv", ["output", "service", "name", "password", "help", "version"])
 except getopt.GetoptError as e:
     print(__doc__)
     sys.exit("invalid option")
 
 name = None
 password = None
+service_type = 'google'
+output_file = 'out.mp3'
 
 for o, a in opts:
     if o in ('-h', '--help'):
@@ -52,7 +57,18 @@ for o, a in opts:
         name = a
     elif o in ('-p', '--password'):
         password = a
+    elif o in ('-s', '--service'):
+        service_type = a
+    elif o in ('-o', '--output'):
+        output_file = a
 
 text_need_to_speech = ' '.join(args)
 
-print('speech: ' + text_need_to_speech)
+if service_type == 'google':
+    tts = gTTS(text='Hello 123', lang='en')
+    tts.save(output_file)
+
+else:
+    sys.exit("invalid service type")
+
+
