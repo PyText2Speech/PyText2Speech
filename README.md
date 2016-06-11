@@ -26,6 +26,11 @@ brew install sox
 install sox, and modify PATH variable so our program can execute sox
 
 
+### Linux Preparation
+
+install sox with your package management system
+
+
 License
 ---
 The MIT License (MIT)
