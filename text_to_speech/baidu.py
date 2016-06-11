@@ -1,5 +1,6 @@
 # -*- encoding=utf8 -*-
 import requests
+from text_to_speech.exceptions import AuthenticationError, LanguageNotSupportError
 
 from text_to_speech.base import Speech
 
@@ -16,6 +17,9 @@ class BaiduSpeech(Speech):
 
         print(resp)
 
+        if 'error' in resp:
+            raise AuthenticationError(resp['error_description'])
+
         self.token = resp['access_token']
 
     def speech(self, narration, lang, voice=None, **kwargs):
@@ -24,7 +28,10 @@ class BaiduSpeech(Speech):
         pit = kwargs.get('pit', 5)
         vol = kwargs.get('vol', 5)
 
-        print(self.token)
+        if 'zh' in lang:
+            lang = 'zh'
+        else:
+            raise LanguageNotSupportError("Baidu didn't support {}".format(lang))
 
         response = requests.get("http://tsn.baidu.com/text2audio", {
             "tex": narration.encode('utf-8'),
@@ -51,7 +58,7 @@ class BaiduSpeech(Speech):
 if __name__ == "__main__":
 
     baidu = BaiduSpeech("hkOIhq0imbfhzxGsxq2HwYN7", "27c99621b1c7b2777ce054442c15382b")
-    content = baidu.speech(u"很高興參加這個project", u'zh')
+    content = baidu.speech(u"很高興參加這個project", u'zh-cn')
 
     with open("/tmp/test.mp3", 'wb') as fp:
         fp.write(content)
