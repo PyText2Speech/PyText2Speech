@@ -116,6 +116,9 @@ class Google(Speech):
 
 
 def main():
+    username = "test123"
+    password = "test123"
+
     google = Google(username, password)
     content = google.speech("I like the project", lang='en-uk')
     content[0].save('/tmp/google.mp3')
