@@ -43,7 +43,7 @@ class BaiduSpeech(Speech):
 
     def voices(self, lang):
 
-        if 'zh' in lang :
+        if 'zh' in lang:
             return ['Ann Li']
 
         return []

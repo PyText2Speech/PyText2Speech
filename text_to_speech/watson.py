@@ -69,7 +69,7 @@ class Watson(Speech):
             return Watson.IT
 
 
-if __name__ == '__main__':
+def main():
     username = "adb36e85-0df9-446c-b168-741eb5439c50"
     password = "jxgksFkuZ74o"
     watson = Watson(username, password)
@@ -78,4 +78,8 @@ if __name__ == '__main__':
     with open("/tmp/watson.wav", 'wb') as fp:
         fp.write(content)
 
+
+if __name__ == '__main__':
+
+    main()
 
