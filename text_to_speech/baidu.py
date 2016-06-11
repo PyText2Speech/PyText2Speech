@@ -46,7 +46,7 @@ class BaiduSpeech(Speech):
 
         print(response)
 
-        return response.content
+        return response.content, 'mp3'
 
     def voices(self, lang):
 
@@ -54,6 +54,9 @@ class BaiduSpeech(Speech):
             return ['Ann Li']
 
         return []
+
+    def languages(self):
+        return ["zh"]
 
 if __name__ == "__main__":
 

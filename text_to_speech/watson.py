@@ -3,6 +3,7 @@ from text_to_speech.base import Speech
 
 
 class Watson(Speech):
+    LANGUAGES = ('ja', 'en', 'fr', 'de', 'it')
 
     JAPANESE_VOICES = (
         u'ja-JP_EmiVoice',
@@ -48,7 +49,7 @@ class Watson(Speech):
                             stream=False, verify=False
                             )
 
-        return resp.content
+        return resp.content, 'wav'
 
     def voices(self, lang):
         lang = lang.lower()
@@ -68,6 +69,11 @@ class Watson(Speech):
         if lang in 'it':
             return Watson.IT
 
+        return []
+
+    def languages(self):
+        return Watson.LANGUAGES
+
 
 def main():
     username = "adb36e85-0df9-446c-b168-741eb5439c50"
@@ -80,6 +86,4 @@ def main():
 
 
 if __name__ == '__main__':
-
     main()
-
