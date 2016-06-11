@@ -101,13 +101,13 @@ def main(argv=None):
     if service_type == 'GOOGLE':
         # tts = gTTS(text=text_need_to_speech, lang=lang)
         # tts.save(output_file)
-        speaker = Google(name, password, output_file)
+        speaker = Google(name, password, file_name=output_file)
     elif service_type == 'WATSON':
-        speaker = Watson(name, password, output_file)
+        speaker = Watson(name, password, file_name=output_file)
     elif server == "ITIR":
-        speaker = Itri(name, password, output_file)
+        speaker = Itri(name, password, file_name=output_file)
     elif server == 'BAIDU':
-        speaker = BaiduSpeech(name, password, output_file)
+        speaker = BaiduSpeech(name, password, file_name=output_file)
     else:
         sys.exit("invalid service type")
 
