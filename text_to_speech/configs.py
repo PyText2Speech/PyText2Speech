@@ -1,23 +1,23 @@
 # -*- encoding=utf8 -*-
 
-username = ''
-pwd = ''
+name = 'name'
+pwd = 'pwd'
 
 server = {
-            "BAIDU": {
-                        username: 'hkOIhq0imbfhzxGsxq2HwYN7',
+            "BAIDU" : {
+                        name: 'hkOIhq0imbfhzxGsxq2HwYN7',
                         pwd: '27c99621b1c7b2777ce054442c15382b'
             },
-            "GOOGLE": {
-                        username: '',
+            "GOOGLE" : {
+                        name: '',
                         pwd: ''
             },
-            "WATSON": {
-                        username: 'adb36e85-0df9-446c-b168-741eb5439c50',
+            "WATSON" : {
+                        name: 'adb36e85-0df9-446c-b168-741eb5439c50',
                         pwd: 'jxgksFkuZ74o'
             },
-            "ITIR":   {
-                        username: '',
+            "ITIR" : {
+                        name: '',
                         pwd: ''
             }
 }
