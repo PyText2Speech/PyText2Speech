@@ -6,6 +6,12 @@ from text_to_speech.base import Speech
 
 from text_to_speech.configs import server
 
+'''
+try:
+    from .base import Speech
+except Exception as e:
+    from base import Speech
+'''
 
 class BaiduSpeech(Speech):
 
@@ -54,7 +60,6 @@ class BaiduSpeech(Speech):
         return response.content, 'mp3'
 
     def voices(self, lang):
-
         if 'zh' in lang:
             return ['Ann Li', '']
 
