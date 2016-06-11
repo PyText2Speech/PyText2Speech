@@ -9,4 +9,7 @@ class Speech(object):
         pass
 
     def voices(self, lang):
-        pass
+        return []
+
+    def languages(self):
+        return []
