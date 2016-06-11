@@ -1,5 +1,6 @@
 import pytest
 from .baidu import BaiduSpeech
+from .configs import server
 
 
 def func(x):
@@ -13,6 +14,6 @@ def test_answer():
 
 
 def test_token():
-    baidu = BaiduSpeech("hkOIhq0imbfhzxGsxq2HwYN7", "27c99621b1c7b2777ce054442c15382b")
+    baidu = BaiduSpeech()
     content = baidu.speech(u"很高興參加這個project", u'zh')
-    assert str(content) == '<Response [200]>'
+    assert content != '' 
