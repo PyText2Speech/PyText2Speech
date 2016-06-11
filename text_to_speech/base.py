@@ -41,9 +41,6 @@ class Speech(object):
         """
         pass
 
-    def meta(self):
-        pass
-
     def voices(self, lang):
         return []
 

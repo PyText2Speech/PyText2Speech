@@ -53,6 +53,7 @@ class BaiduSpeech(Speech):
     def languages(self):
         return ["zh"]
 
+
 if __name__ == "__main__":
 
     baidu = BaiduSpeech("hkOIhq0imbfhzxGsxq2HwYN7", "27c99621b1c7b2777ce054442c15382b")
