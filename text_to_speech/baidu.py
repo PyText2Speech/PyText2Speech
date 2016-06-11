@@ -4,10 +4,11 @@ from text_to_speech.exceptions import AuthenticationError, LanguageNotSupportErr
 
 from text_to_speech.base import Speech
 
+from text_to_speech.configs import server
 
 class BaiduSpeech(Speech):
 
-    def __init__(self, name, password):
+    def __init__(self, name=server["BAIDU"].name, password=server["BAIDU"].pwd):
         super(BaiduSpeech, self).__init__(name, password)
 
         uri = "https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=%s&client_secret=%s" % (
@@ -56,7 +57,8 @@ class BaiduSpeech(Speech):
 
 if __name__ == "__main__":
 
-    baidu = BaiduSpeech("hkOIhq0imbfhzxGsxq2HwYN7", "27c99621b1c7b2777ce054442c15382b")
+    #baidu = BaiduSpeech("hkOIhq0imbfhzxGsxq2HwYN7", "27c99621b1c7b2777ce054442c15382b")
+    baidu = BaiduSpeech()
     content = baidu.speech(u"很高興參加這個project", u'zh-cn')
 
     with open("/tmp/test.mp3", 'wb') as fp:
