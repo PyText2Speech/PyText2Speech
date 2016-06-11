@@ -111,7 +111,7 @@ def main(argv=None):
     else:
         sys.exit("invalid service type")
 
-    play(speaker.make_file())
+    play(speaker.make_file(narration=text_need_to_speech, lang=lang))
 
 if __name__ == "__main__":
     from text_to_speech.cmd_player import play
