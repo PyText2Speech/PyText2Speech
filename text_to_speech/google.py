@@ -97,6 +97,9 @@ class Google(Speech):
 
         return content, 'mp3'
 
+    def languages(self):
+        Google.LANGUAGES
+
     def voices(self, lang):
 
         lang = lang.lower()
