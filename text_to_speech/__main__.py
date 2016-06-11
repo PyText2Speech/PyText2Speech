@@ -19,7 +19,7 @@ DESCRIPTION
 	-h, --help
 		show usage
 
-	-v, --version
+	-v, --verbose
 
 EXAMPLES
     text2speech -o output.mp3 -s google  Have a goode day
