@@ -37,6 +37,10 @@ from gtts import gTTS
 from text_to_speech.configs import server
 from text_to_speech.get_speech import get_speech
 from langdetect import detect
+from text_to_speech.watson import Watson
+from text_to_speech.google import Google
+from text_to_speech.itri import Itri
+from text_to_speech.baidu import BaiduSpeech
 from text_to_speech.cmd_player import play
 
 
@@ -53,7 +57,7 @@ def main(argv=None):
     name = None
     password = None
     service_type = None
-    output_file = 'out.mp3'
+    output_file = None
     verbose = False
     lang = None
 
@@ -82,7 +86,7 @@ def main(argv=None):
         lang = detect(text_need_to_speech)
 
     if not service_type:
-        service_type = get_speech(lang).Name
+        service_type = get_speech(lang).NAME
 
     if not name and not password:
         try:
@@ -92,16 +96,22 @@ def main(argv=None):
         except KeyError:
             sys.exit("invalid service type")
 
-
     if verbose:
         print('[{}] {} > {}'.format(service_type, text_need_to_speech, output_file))
-    if service_type.upper() == 'GOOGLE':
-        tts = gTTS(text=text_need_to_speech, lang=lang)
-        tts.save(output_file)
+    if service_type == 'GOOGLE':
+        # tts = gTTS(text=text_need_to_speech, lang=lang)
+        # tts.save(output_file)
+        speaker = Google(name, password, output_file)
+    elif service_type == 'WATSON':
+        speaker = Watson(name, password, output_file)
+    elif server == "ITIR":
+        speaker = Itri(name, password, output_file)
+    elif server == 'BAIDU':
+        speaker = BaiduSpeech(name, password, output_file)
     else:
         sys.exit("invalid service type")
 
-    play(output_file)
+    play(speaker.make_file())
 
 if __name__ == "__main__":
     from text_to_speech.cmd_player import play

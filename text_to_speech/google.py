@@ -3,6 +3,7 @@ from text_to_speech.base import Speech
 
 
 class Google(Speech):
+    NAME = 'Google'
     # 'af': 'Afrikaans'
     # 'sq': 'Albanian'
     # 'ar': 'Arabic'
