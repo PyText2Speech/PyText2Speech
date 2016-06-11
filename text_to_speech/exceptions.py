@@ -12,3 +12,7 @@ class LanguageNotSupportError(TextToSpeechException):
 
 class VoiceNotSupportError(TextToSpeechException):
     """if the voice is not support, raise the exception"""
+
+
+class SoxNotInstallError(TextToSpeechException):
+    """if sox didn't install, raise the exception"""
