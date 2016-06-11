@@ -28,8 +28,8 @@ class Watson(Speech):
         'it-IT_FrancescaVoice',
     )
 
-    def __init__(self, name, password):
-        super().__init__(name, password)
+    def __init__(self, name, password, **kwargs):
+        super().__init__(name, password, **kwargs)
         self.url = "https://stream.watsonplatform.net/text-to-speech/api"
         self.name = name
         self.password = password
