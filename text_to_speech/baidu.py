@@ -1,6 +1,5 @@
 # -*- encoding=utf8 -*-
 import requests
-import os
 
 from .base import Speech
 
