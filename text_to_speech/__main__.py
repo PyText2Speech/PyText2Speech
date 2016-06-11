@@ -36,6 +36,7 @@ import getopt
 from gtts import gTTS
 from text_to_speech.configs import server
 from text_to_speech.get_speech import get_speech
+from langdetect import detect
 
 
 def main(argv=None):
@@ -74,8 +75,10 @@ def main(argv=None):
 
 
     # TODO: detect languge in follow
+    text_need_to_speech = ' '.join(args)
+
     if not lang:
-        lang = 'en'
+        lang = detect(text_need_to_speech)
 
     if not service_type:
         service_type = get_speech(lang).Name
@@ -88,7 +91,6 @@ def main(argv=None):
         except KeyError:
             sys.exit("invalid service type")
 
-    text_need_to_speech = ' '.join(args)
 
     if verbose:
         print('[{}] {} > {}'.format(service_type, text_need_to_speech, output_file))
