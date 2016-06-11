@@ -13,7 +13,16 @@ def test_answer():
     assert func(3) == 4
 
 
-def test_token():
-    baidu = BaiduSpeech()
-    #content = baidu.speech(u"很高興參加這個project", u'zh')
-    assert baidu != '' 
+@pytest.fixture
+def baidu():
+    return BaiduSpeech()
+
+
+def test_token(baidu):
+    token = baidu.token
+    assert token != ''
+
+
+def test_speech(baidu):
+    content, extension = baidu.speech(u"很高興參加這個project", u'zh-cn')
+    assert extension == 'mp3'
