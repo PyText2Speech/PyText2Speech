@@ -91,8 +91,11 @@ class Google(Speech):
         """
 
         resp = gTTS(text = narration, lang = lang)
+        resp.save('/tmp/google.mp3')
 
-        return resp, 'mp3'
+        content = open('/tmp/google.mp3', 'rb').read()
+
+        return content, 'mp3'
 
     def voices(self, lang):
 
@@ -117,10 +120,14 @@ class Google(Speech):
 
 
 def main():
-    google = Google(username, password)
-    content = google.speech("I like the project", lang='en-uk')
-    content[0].save('/tmp/google.mp3')
+    username = "test123"
+    password = "test123"
 
+    google = Google(username, password)
+    content, extension = google.speech("I like the project", lang='en-uk')
+
+    with open("/tmp/google1." + extension, 'wb') as fp:
+        fp.write(content)
 
 if __name__ == '__main__':
     main()
