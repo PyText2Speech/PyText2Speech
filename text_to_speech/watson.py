@@ -79,9 +79,9 @@ def main():
     username = "adb36e85-0df9-446c-b168-741eb5439c50"
     password = "jxgksFkuZ74o"
     watson = Watson(username, password)
-    content = watson.speech("I like the project", 'en')
+    content, extension = watson.speech("I like the project", 'en')
 
-    with open("/tmp/watson.wav", 'wb') as fp:
+    with open("/tmp/watson." + extension, 'wb') as fp:
         fp.write(content)
 
 
