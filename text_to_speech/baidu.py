@@ -8,7 +8,7 @@ from text_to_speech.configs import server
 
 class BaiduSpeech(Speech):
 
-    def __init__(self, name=server["BAIDU"].name, password=server["BAIDU"].pwd):
+    def __init__(self, name=server['BAIDU']['name'], password=server['BAIDU']['pwd']):
         super(BaiduSpeech, self).__init__(name, password)
 
         uri = "https://openapi.baidu.com/oauth/2.0/token"
