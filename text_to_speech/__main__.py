@@ -34,6 +34,7 @@ SOURCE
 import sys
 import getopt
 from gtts import gTTS
+from text_to_speech.configs import server
 
 
 def main(argv=None):
@@ -41,16 +42,17 @@ def main(argv=None):
         argv = sys.argv[1:]
 
     try:
-        opts, args = getopt.getopt(argv, "o:s:n:p:hv", ["output", "service", "name", "password", "help", "verbose"])
+        opts, args = getopt.getopt(argv, "l:o:s:n:p:hv", ["lang", "output", "service", "name", "password", "help", "verbose"])
     except getopt.GetoptError as e:
         print(__doc__)
         sys.exit("invalid option: " + str(e))
 
     name = None
     password = None
-    service_type = 'google'
+    service_type = 'GOOGLE'
     output_file = 'out.mp3'
     verbose = False
+    lang = None
 
     for o, a in opts:
         if o in ('-h', '--help'):
@@ -59,6 +61,8 @@ def main(argv=None):
         elif o in ('-v', '--verbose'):
             verbose = True
         elif o in ('-n', '--name'):
+            lang = a
+        elif o in ('-l', '--lang'):
             name = a
         elif o in ('-p', '--password'):
             password = a
@@ -67,12 +71,21 @@ def main(argv=None):
         elif o in ('-o', '--output'):
             output_file = a
 
+    if not name and not password:
+        s = server.get(service_type.upper(), None)
+        name = s.username
+        password = s.pwd
+
     text_need_to_speech = ' '.join(args)
+
+    # TODO: detect languge in follow
+    if not lang:
+        lang = 'en'
 
     if verbose:
         print('[{}] {} > {}'.format(service_type, text_need_to_speech, output_file))
-    if service_type == 'google':
-        tts = gTTS(text=text_need_to_speech, lang='en')
+    if service_type.upper() == 'GOOGLE':
+        tts = gTTS(text=text_need_to_speech, lang=lang)
         tts.save(output_file)
     else:
         sys.exit("invalid service type")
