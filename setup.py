@@ -1,4 +1,5 @@
-from distutils.core import setup
+from setuptools import setup
+
 setup(
     name="pytext2speech",
     packages=["pytext2speech"],
