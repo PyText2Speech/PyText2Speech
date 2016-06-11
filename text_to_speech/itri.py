@@ -97,8 +97,10 @@ class Itri(Speech):
             resp = requests.post(self.url, data=body, headers=headers)
 
         resp = resp.text.split('</Result>')[0].split('&amp;')[4]
+        wget.download(resp, out="/tmp/itri.wav")
 
-        return resp, 'wav'
+        content = open('/tmp/itri.wav', 'rb').read()
+        return content, 'wav'
 
     def voices(self, lang):
         lang = lang.lower()
@@ -116,9 +118,10 @@ def main():
     username = "test-for-r"
     password = "test1for1r"
     itri = Itri(username, password)
-    download_url, extension = itri.speech(u"很高興參加這個project", u'zh-cn', voice = 'TW_LIT_AKoan')
-    wget.download(download_url, out="/tmp/itri." + extension)
+    content, extension = itri.speech(u"很高興參加這個project", u'zh-cn', voice = u'TW_SPK_AKoan')
 
+    with open("/tmp/itri1." + extension, 'wb') as fp:
+        fp.write(content)
 
 if __name__ == '__main__':
     main()
