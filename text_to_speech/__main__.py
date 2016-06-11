@@ -82,7 +82,7 @@ def main(argv=None):
         lang = detect(text_need_to_speech)
 
     if not service_type:
-        service_type = get_speech(lang).Name
+        service_type = get_speech(lang).NAME
 
     if not name and not password:
         try:
