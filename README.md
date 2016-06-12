@@ -41,6 +41,7 @@ The text speech test is providing by those IBM watson, Industrial Technology Res
 Execute this package at first time, we will create a JSON file pytext2speech.json at your "~/" path, and you just input the service's acoount and password, congratulation it can work now.
 
 JSON file format example:
+```json    
     {
      "BAIDU":
             {
@@ -63,6 +64,7 @@ JSON file format example:
                 "pwd":""
             }
     }
+```
 
 
 License
