@@ -1,3 +1,6 @@
+[![travis-ci status](https://travis-ci.org/chairco/PyText2Speech.svg?branch=master)](https://travis-ci.org/chairco/PyText2Speech)
+
+
 PyText2Speech
 ---
 PyText2Speech is a python3 package providing a function to easy to speach test with different languages.
