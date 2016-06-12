@@ -15,7 +15,7 @@ def test_answer():
 
 @pytest.fixture
 def baidu():
-    return BaiduSpeech()
+    return BaiduSpeech(name=server['BAIDU']['name'], password=server['BAIDU']['pwd'])
 
 
 def test_token(baidu):

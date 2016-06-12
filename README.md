@@ -31,19 +31,45 @@ install sox, and modify PATH variable so our program can execute sox
 install sox with your package management system
 
 
+### Account Setting
+
+The text speech test is providing by those IBM watson, Industrial Technology Research Institute of Taiwan ([ITRI](https://www.itri.org.tw/)), Baidu service, before you should apply the account and can use it.
+
+Execute this package at first time, we will create a JSON file pytext2speech.json at your "~/" path, and you just input the service's acoount and password, congratulation it can work now.
+
+JSON file format example:
+    {
+     "BAIDU":
+            {
+                "name":"",
+                "pwd":""
+            },
+    "GOOGLE":
+            {
+                "name":"",
+                "pwd":""
+            },
+    "WATSON":
+            {
+                "name":"",
+                "pwd":""
+            },
+    "ITRI":
+            {
+                "name":"",
+                "pwd":""
+            }
+    }
+
+
 License
 ---
 The MIT License (MIT)
 
 Copyright (c) 2016 PyText2Speech
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
-documentation files (the "Software"), to deal in the Software without restriction, including without limitation
- the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
-  and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the 
-Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
- INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
