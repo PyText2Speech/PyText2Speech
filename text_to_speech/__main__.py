@@ -67,9 +67,9 @@ def main(argv=None):
             sys.exit(0)
         elif o in ('-v', '--verbose'):
             verbose = True
-        elif o in ('-n', '--name'):
-            lang = a
         elif o in ('-l', '--lang'):
+            lang = a
+        elif o in ('-n', '--name'):
             name = a
         elif o in ('-p', '--password'):
             password = a
