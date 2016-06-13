@@ -4,7 +4,7 @@ from text_to_speech.exceptions import AuthenticationError, LanguageNotSupportErr
 
 from text_to_speech.base import Speech
 
-from text_to_speech.configs import server
+#from text_to_speech.configs import server
 
 '''
 try:
