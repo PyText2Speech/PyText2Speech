@@ -1,6 +1,6 @@
 import pytest
 from .baidu import BaiduSpeech
-from .configs import server
+#from .configs import server
 
 
 def func(x):
