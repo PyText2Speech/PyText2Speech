@@ -22,9 +22,11 @@ DESCRIPTION
 	-v, --verbose
 
 EXAMPLES
-    text2speech -o output.mp3 Have a goode day (def. is Google)
+    text2speech -o output.mp3 Have a goode day
     text2speech -s BAIDU -l zh "你好"
     text2speech -s WATSON -l en HELLO
+    text2speech -s GOOGLE -l en hello
+    text2speech -s ITRI -l zh-cn "你好"
 
 
 
@@ -51,6 +53,10 @@ from text_to_speech.cmd_player import play
 def main(argv=None):
     if not argv:
         argv = sys.argv[1:]
+
+    if len(argv) == 0:
+        print(__doc__)
+        sys.exit(0)
 
     try:
         opts, args = getopt.getopt(argv, "l:o:s:n:p:hv", ["lang", "output", "service", "name", "password", "help", "verbose"])
