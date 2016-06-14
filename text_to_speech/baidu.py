@@ -4,14 +4,6 @@ from text_to_speech.exceptions import AuthenticationError, LanguageNotSupportErr
 
 from text_to_speech.base import Speech
 
-#from text_to_speech.configs import server
-
-'''
-try:
-    from .base import Speech
-except Exception as e:
-    from base import Speech
-'''
 
 class BaiduSpeech(Speech):
 
@@ -70,8 +62,8 @@ class BaiduSpeech(Speech):
 
 
 if __name__ == "__main__":
-
-    baidu = BaiduSpeech()
+    from text_to_speech.configs import server
+    baidu = BaiduSpeech(name=server['BAIDU']['name'], password=server['BAIDU']['pwd'])
     content, extension = baidu.speech(u"很高興參加這個project", u'zh-cn')
 
     with open("/tmp/test." + extension, 'wb') as fp:

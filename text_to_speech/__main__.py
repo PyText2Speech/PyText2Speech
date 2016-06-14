@@ -22,7 +22,11 @@ DESCRIPTION
 	-v, --verbose
 
 EXAMPLES
-    text2speech -o output.mp3 -s google  Have a goode day
+    text2speech -o output.mp3 Have a goode day (def. is Google)
+    text2speech -s BAIDU -l zh "你好"
+    text2speech -s WATSON -l en HELLO
+
+
 
 COPYRIGHT
 	MIT Licence
@@ -101,10 +105,12 @@ def main(argv=None):
 
     if service_type == 'WATSON':
         speaker = Watson(name, password, file_name=output_file)
-    elif server == "ITIR":
+    elif service_type == "ITRI":
         speaker = Itri(name, password, file_name=output_file)
-    elif server == 'BAIDU':
+    elif service_type == 'BAIDU':
         speaker = BaiduSpeech(name, password, file_name=output_file)
+    elif service_type == 'GOOGLE':
+        speaker = Google(name, password, file_name=output_file)
     else:
         speaker = Google(name, password, file_name=output_file)
 

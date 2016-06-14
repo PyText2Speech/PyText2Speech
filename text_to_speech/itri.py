@@ -1,5 +1,6 @@
 import requests
 import wget
+import os
 from text_to_speech.base import Speech
 
 
@@ -53,10 +54,8 @@ class Itri(Speech):
         Returns the get HTTP response by doing a GET to
         /v1/synthesize with text, voice, accept
         """
-
         if not voice:
             voice = self.voices(lang)[0]
-
         volume = 10
         speed = 1
         headers = {'content-type': 'text/xml'}
@@ -74,9 +73,7 @@ class Itri(Speech):
             </ConvertText>
             </soap:Body>
             </soap:Envelope>""" % (self.name, self.password, narration, voice, volume, speed)
-
         resp = requests.post(self.url, data=body.encode('utf-8'), headers=headers)
-
         body = """<?xml version="1.0" encoding="utf-8"?>
           <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
             <soap:Body>
@@ -87,24 +84,24 @@ class Itri(Speech):
               </GetConvertStatus>
             </soap:Body>
           </soap:Envelope>""" % (resp.text.split('</Result>')[0].split('&amp;')[2])
-
         resp = requests.post(self.url, data=body, headers=headers)
-
         while resp.text.split('</Result>')[0].split('&amp;')[2] != '2':
             from time import sleep
             sleep(0.5)
-            print(1)
+            #print(1)
             resp = requests.post(self.url, data=body, headers=headers)
-
         resp = resp.text.split('</Result>')[0].split('&amp;')[4]
-        wget.download(resp, out="/tmp/itri.wav")
-
-        content = open('/tmp/itri.wav', 'rb').read()
+        if os.path.isfile('itri.wav'):
+            os.remove('itri.wav')
+        wget.download(resp, out="itri.wav")
+        content = open('itri.wav', 'rb').read()
         return content, 'wav'
 
+    def languages(self):
+        return Itri.LANGUAGES
+    
     def voices(self, lang):
         lang = lang.lower()
-
         if lang in 'cn' or lang in 'zh-cn':
             return Itri.CHINESE_VOICES
 
@@ -118,7 +115,7 @@ def main():
     username = "test-for-r"
     password = "test1for1r"
     itri = Itri(username, password)
-    content, extension = itri.speech(u"很高興參加這個project", u'zh-cn', voice = u'TW_SPK_AKoan')
+    content, extension = itri.speech(u"很高興參加這個project", u'zh-cn', voice=u'TW_SPK_AKoan')
 
     with open("/tmp/itri1." + extension, 'wb') as fp:
         fp.write(content)

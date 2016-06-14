@@ -90,7 +90,7 @@ class Google(Speech):
         /v1/synthesize with text, voice, accept
         """
 
-        resp = gTTS(text = narration, lang = lang)
+        resp = gTTS(text=narration, lang=lang)
         resp.save('/tmp/google.mp3')
 
         content = open('/tmp/google.mp3', 'rb').read()
@@ -98,10 +98,9 @@ class Google(Speech):
         return content, 'mp3'
 
     def languages(self):
-        Google.LANGUAGES
+        return Google.LANGUAGES
 
     def voices(self, lang):
-
         lang = lang.lower()
 
         if lang in 'cn' or lang in 'zh-cn':
