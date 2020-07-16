@@ -3,7 +3,7 @@
 
 PyText2Speech
 ---
-PyText2Speech is a python3 package providing a function to easy to speach test with different languages.
+PyText2Speech is a python3 package providing a function to easy to speech test with different languages.
 This package now integrate with google, IBM watson, Industrial Technology 
 Research Institute of Taiwan ([ITRI](https://www.itri.org.tw/)), Baidu.
 
